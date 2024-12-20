@@ -2,3 +2,5 @@ sentence-transformers
 wikipedia-api
 numpy
 openai
+transformers
+torch
