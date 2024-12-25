@@ -57,15 +57,17 @@ class RagFromScartch():
         most_similar_documents = paragraph[top_k[0]]    # get single one
         # most_similar_documents = [paragraph[idx] for idx in top_k]
         # Wrap the most similar documents into readable format
-        context = ""
-        for p in most_similar_documents:
-            wraped_text = textwrap.fill(p, width=200)
-            print("-" * 68)
-            print(wraped_text)
-            print("-" * 68)
-            context += wraped_text + "\n\n"
+        wraped_text = textwrap.fill(most_similar_documents, width=200)
+        # context = ""
+        # for p in most_similar_documents:
+        #     wraped_text = textwrap.fill(p, width=200)
+        #     print("-" * 68)
+        #     print(wraped_text)
+        #     print("-" * 68)
+        #     context += wraped_text + "\n\n"
+        # prompt = self.generate_prompt(context, query)
 
-        prompt = self.generate_prompt(context, query)
+        prompt = self.generate_prompt(wraped_text, query)
         if len(prompt) > 8192:
             prompt = prompt[:8192]  # Added truncation
         response_content = self.get_openai_response(prompt)
@@ -75,4 +77,5 @@ class RagFromScartch():
 # Usage
 if __name__ == "__main__":
     llm_query = RagFromScartch()
-    llm_query.process_data('Large_language_models', "tell me about LLM ")
+    result = llm_query.process_data('Large_language_models', "what is LLM ")
+    print(result)
