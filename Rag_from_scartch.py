@@ -67,7 +67,7 @@ class RagFromScartch():
 
         prompt = self.generate_prompt(context, query)
         if len(prompt) > 8192:
-            prompt = prompt  # Added truncation
+            prompt = prompt[:8192]  # Added truncation
         response_content = self.get_openai_response(prompt)
         print(response_content)
 
